@@ -1,7 +1,10 @@
 """
 An implementation of MutableAttr.
 """
-from collections import Mapping
+try:
+    from collections import Mapping
+except:
+    from collections.abc import Mapping
 
 import six
 
