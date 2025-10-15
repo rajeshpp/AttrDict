@@ -1,0 +1,251 @@
+{
+  "name": "Customer Support RAG Chatbot",
+  "description": "A customer support chatbot using Retrieval Augmented Generation to answer questions based on a knowledge base",
+  "data": {
+    "nodes": [
+      {
+        "id": "chatinput-1",
+        "type": "ChatInput",
+        "position": {"x": 100, "y": 200},
+        "data": {
+          "node": {
+            "template": {
+              "input_value": {
+                "type": "str",
+                "required": false,
+                "placeholder": "",
+                "show": true,
+                "multiline": false,
+                "value": "",
+                "input_types": ["Message"],
+                "name": "input_value"
+              }
+            },
+            "display_name": "Chat Input",
+            "description": "Receives user questions"
+          }
+        }
+      },
+      {
+        "id": "file-1",
+        "type": "File",
+        "position": {"x": 100, "y": 400},
+        "data": {
+          "node": {
+            "template": {
+              "path": {
+                "type": "str",
+                "required": true,
+                "placeholder": "",
+                "show": true,
+                "multiline": false,
+                "value": "./data/knowledge_base.txt",
+                "name": "path"
+              }
+            },
+            "display_name": "File",
+            "description": "Loads the knowledge base file"
+          }
+        }
+      },
+      {
+        "id": "textsplitter-1",
+        "type": "CharacterTextSplitter",
+        "position": {"x": 400, "y": 400},
+        "data": {
+          "node": {
+            "template": {
+              "chunk_size": {
+                "type": "int",
+                "required": false,
+                "placeholder": "",
+                "show": true,
+                "value": 1000,
+                "name": "chunk_size"
+              },
+              "chunk_overlap": {
+                "type": "int",
+                "required": false,
+                "placeholder": "",
+                "show": true,
+                "value": 200,
+                "name": "chunk_overlap"
+              }
+            },
+            "display_name": "Text Splitter",
+            "description": "Splits text into chunks"
+          }
+        }
+      },
+      {
+        "id": "embeddings-1",
+        "type": "OpenAIEmbeddings",
+        "position": {"x": 400, "y": 600},
+        "data": {
+          "node": {
+            "template": {
+              "openai_api_key": {
+                "type": "str",
+                "required": true,
+                "placeholder": "",
+                "show": true,
+                "password": true,
+                "value": "",
+                "name": "openai_api_key"
+              },
+              "model": {
+                "type": "str",
+                "required": false,
+                "placeholder": "",
+                "show": true,
+                "value": "text-embedding-ada-002",
+                "name": "model"
+              }
+            },
+            "display_name": "OpenAI Embeddings",
+            "description": "Creates embeddings for text"
+          }
+        }
+      },
+      {
+        "id": "vectorstore-1",
+        "type": "Chroma",
+        "position": {"x": 700, "y": 500},
+        "data": {
+          "node": {
+            "template": {
+              "collection_name": {
+                "type": "str",
+                "required": false,
+                "placeholder": "",
+                "show": true,
+                "value": "customer_support",
+                "name": "collection_name"
+              },
+              "persist_directory": {
+                "type": "str",
+                "required": false,
+                "placeholder": "",
+                "show": true,
+                "value": "./chroma_db",
+                "name": "persist_directory"
+              }
+            },
+            "display_name": "Chroma Vector Store",
+            "description": "Stores and retrieves document embeddings"
+          }
+        }
+      },
+      {
+        "id": "llm-1",
+        "type": "ChatOpenAI",
+        "position": {"x": 700, "y": 200},
+        "data": {
+          "node": {
+            "template": {
+              "openai_api_key": {
+                "type": "str",
+                "required": true,
+                "placeholder": "",
+                "show": true,
+                "password": true,
+                "value": "",
+                "name": "openai_api_key"
+              },
+              "model_name": {
+                "type": "str",
+                "required": false,
+                "placeholder": "",
+                "show": true,
+                "value": "gpt-3.5-turbo",
+                "options": ["gpt-3.5-turbo", "gpt-4", "gpt-4-turbo-preview"],
+                "name": "model_name"
+              },
+              "temperature": {
+                "type": "float",
+                "required": false,
+                "placeholder": "",
+                "show": true,
+                "value": 0.7,
+                "name": "temperature"
+              }
+            },
+            "display_name": "OpenAI Chat",
+            "description": "OpenAI Chat Model"
+          }
+        }
+      },
+      {
+        "id": "prompt-1",
+        "type": "PromptTemplate",
+        "position": {"x": 1000, "y": 300},
+        "data": {
+          "node": {
+            "template": {
+              "template": {
+                "type": "str",
+                "required": true,
+                "placeholder": "",
+                "show": true,
+                "multiline": true,
+                "value": "You are a helpful customer support assistant for ACME Corp. Use the following context from our knowledge base to answer the customer's question. If you don't know the answer based on the context, politely say so and suggest contacting support.\n\nContext:\n{context}\n\nCustomer Question: {question}\n\nHelpful Answer:",
+                "name": "template"
+              }
+            },
+            "display_name": "Prompt Template",
+            "description": "Template for the RAG prompt"
+          }
+        }
+      },
+      {
+        "id": "chatoutput-1",
+        "type": "ChatOutput",
+        "position": {"x": 1300, "y": 300},
+        "data": {
+          "node": {
+            "template": {},
+            "display_name": "Chat Output",
+            "description": "Outputs the response"
+          }
+        }
+      }
+    ],
+    "edges": [
+      {
+        "source": "file-1",
+        "target": "textsplitter-1",
+        "id": "edge-1"
+      },
+      {
+        "source": "textsplitter-1",
+        "target": "vectorstore-1",
+        "id": "edge-2"
+      },
+      {
+        "source": "embeddings-1",
+        "target": "vectorstore-1",
+        "id": "edge-3"
+      },
+      {
+        "source": "chatinput-1",
+        "target": "vectorstore-1",
+        "id": "edge-4"
+      },
+      {
+        "source": "vectorstore-1",
+        "target": "prompt-1",
+        "id": "edge-5"
+      },
+      {
+        "source": "llm-1",
+        "target": "prompt-1",
+        "id": "edge-6"
+      },
+      {
+        "source": "prompt-1",
+        "target": "chatoutput-1",
+        "id": "edge-7"
+      }
+    ]
+  }
+}

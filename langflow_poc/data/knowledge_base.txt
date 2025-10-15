@@ -1,0 +1,70 @@
+ACME Corp Product Knowledge Base
+================================
+
+Product: SmartWidget Pro
+------------------------
+Price: $299.99
+Warranty: 2 years
+Shipping: Free shipping on orders over $50
+Return Policy: 30-day money-back guarantee
+
+Features:
+- Advanced AI-powered automation
+- Cloud sync across all devices
+- 24/7 customer support
+- Battery life: up to 48 hours
+- Water-resistant (IP67 rating)
+- Compatible with iOS and Android
+
+Common Issues and Solutions:
+----------------------------
+
+Q: How do I reset my SmartWidget Pro?
+A: Press and hold the power button for 10 seconds until the LED blinks red, then release. The device will restart automatically.
+
+Q: My device won't connect to WiFi
+A: 1. Make sure you're using a 2.4GHz network (5GHz is not supported)
+   2. Reset your network settings in the app
+   3. Move closer to your router
+   4. Restart both the device and your router
+
+Q: How do I update the firmware?
+A: Open the SmartWidget app, go to Settings > Device Info > Check for Updates. The update will download and install automatically.
+
+Q: The battery drains too quickly
+A: 1. Reduce screen brightness in settings
+   2. Disable background sync for apps you don't use
+   3. Enable power saving mode
+   4. If the issue persists, contact support for a battery replacement
+
+Q: How do I contact customer support?
+A: You can reach us via:
+   - Email: support@acmecorp.com
+   - Phone: 1-800-ACME-HELP (available 24/7)
+   - Live chat on our website
+   - Response time: Usually within 2 hours
+
+Shipping Information:
+---------------------
+- Standard shipping: 5-7 business days (Free over $50)
+- Express shipping: 2-3 business days ($15.99)
+- Overnight shipping: Next business day ($29.99)
+- International shipping: 10-15 business days (varies by location)
+
+We ship to all 50 US states and over 100 countries worldwide.
+
+Return and Refund Policy:
+-------------------------
+- 30-day money-back guarantee from date of purchase
+- Item must be in original packaging with all accessories
+- Refund processed within 5-7 business days
+- Return shipping is free for defective items
+- Customer pays return shipping for non-defective returns
+
+Account Management:
+-------------------
+- Create an account at www.acmecorp.com
+- Track orders in real-time
+- Access product manuals and guides
+- Manage multiple devices
+- View warranty information
