@@ -1,0 +1,30 @@
+version: '3.8'
+
+services:
+  langflow:
+    image: langflowai/langflow:latest
+    container_name: langflow_poc
+    ports:
+      - "7860:7860"
+    environment:
+      - LANGFLOW_DATABASE_URL=sqlite:///./langflow.db
+      - LANGFLOW_AUTO_LOGIN=true
+    volumes:
+      - ./flows:/app/flows
+      - ./data:/app/data
+      - langflow_data:/app/langflow
+    restart: unless-stopped
+    command: langflow run --host 0.0.0.0 --port 7860
+
+volumes:
+  langflow_data:
+
+# Usage:
+# 1. Make sure Docker and Docker Compose are installed
+# 2. Run: docker-compose up -d
+# 3. Access LangFlow at http://localhost:7860
+# 4. Import flows/customer_support_rag.json
+# 5. Configure your OpenAI API key in the flow nodes
+#
+# To stop: docker-compose down
+# To view logs: docker-compose logs -f

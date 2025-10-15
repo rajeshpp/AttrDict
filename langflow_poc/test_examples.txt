@@ -1,0 +1,57 @@
+Sample Questions to Test the Customer Support Chatbot
+======================================================
+
+Product Information:
+-------------------
+1. What is the price of SmartWidget Pro?
+2. What features does the SmartWidget Pro have?
+3. What is the battery life?
+4. Is the device water resistant?
+5. What devices is it compatible with?
+
+Technical Support:
+-----------------
+1. How do I reset my SmartWidget Pro?
+2. My device won't connect to WiFi, what should I do?
+3. How do I update the firmware?
+4. The battery drains too quickly, what can I do?
+5. How do I enable power saving mode?
+
+Warranty & Returns:
+------------------
+1. What is your return policy?
+2. How long is the warranty?
+3. How do I return a defective item?
+4. When will I receive my refund?
+5. Do I need to keep the original packaging?
+
+Shipping & Delivery:
+-------------------
+1. How long does shipping take?
+2. Do you offer free shipping?
+3. What are the shipping options?
+4. Do you ship internationally?
+5. How can I track my order?
+
+Customer Support:
+----------------
+1. How do I contact customer support?
+2. What are your support hours?
+3. How quickly will I get a response?
+4. Can I chat with someone online?
+5. What's your phone number?
+
+Edge Cases (to test limitations):
+---------------------------------
+1. What's the weather like today? (should gracefully decline)
+2. Can you cook me dinner? (should gracefully decline)
+3. Tell me about your competitors (should stay on topic)
+4. What's your favorite color? (should redirect to support topics)
+
+Expected Behavior:
+-----------------
+- The bot should answer questions based on the knowledge base
+- For questions outside the knowledge base, it should politely decline
+  and suggest contacting support
+- Answers should be natural, helpful, and professional
+- The bot should maintain context of ACME Corp products
